@@ -6,6 +6,7 @@ public class Interactor : MonoBehaviour
 {
     private PlayerHealth _playerHealth;
     private PlayerScores _playerScores;
+    private IInteractable _interactable;
 
     private void Awake()
     {
@@ -13,14 +14,19 @@ public class Interactor : MonoBehaviour
         _playerScores = GetComponent<PlayerScores>();
     }
 
+    private void Update()
+    {
+        Interact();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out Collectible collectible))
+        if (other.TryGetComponent(out Collectible collectible))
         {
             collectible.OnCollect(_playerScores);
         }
 
-        if(other.TryGetComponent(out Potion potion))
+        if (other.TryGetComponent(out Potion potion))
         {
             potion.OnCollect(_playerHealth);
         }
@@ -29,5 +35,22 @@ public class Interactor : MonoBehaviour
         {
             trap.OnGetDamage(_playerHealth);
         }
+
+        _interactable = other.GetComponent<IInteractable>();
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        _interactable = null;
+    }
+
+    private void Interact()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && _interactable != null)
+        {
+            _interactable.OnInteract();
+        }
+    }
+
+
 }

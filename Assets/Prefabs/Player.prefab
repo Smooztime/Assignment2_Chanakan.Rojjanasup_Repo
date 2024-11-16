@@ -653,6 +653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6840863037720056055}
   - component: {fileID: 6162042319701006487}
+  - component: {fileID: 7974807486507048975}
   m_Layer: 0
   m_Name: Boy01_Body_Geo
   m_TagString: Untagged
@@ -810,6 +811,28 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000015497208, y: 0.037172437, z: -0.060058713}
     m_Extent: {x: 0.8249251, y: 0.9872097, z: 0.32054943}
   m_DirtyAABB: 0
+--- !u!64 &7974807486507048975
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2754362432728601403}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &2844588939209612897
 GameObject:
   m_ObjectHideFlags: 0
@@ -2847,9 +2870,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6073758864502194174}
-  - component: {fileID: 2194346568335873318}
+  - component: {fileID: 7988229415272079298}
   - component: {fileID: 7030475281315344455}
-  - component: {fileID: 8147350034456817745}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2873,7 +2895,7 @@ Transform:
   - {fileID: 4792460336673132401}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &2194346568335873318
+--- !u!54 &7988229415272079298
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2898,7 +2920,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &7030475281315344455
 CapsuleCollider:
@@ -2919,30 +2941,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.22
-  m_Height: 2.05
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!136 &8147350034456817745
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8230275664393232132}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_Height: 2.05
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}

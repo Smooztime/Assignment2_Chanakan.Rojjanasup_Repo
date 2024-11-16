@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee633f13f12d91f43a54502ba54e4ca2, type: 3}
   m_Name: AJPlayerSO
   m_EditorClassIdentifier: 
-  playerSpeed: 10
-  playerRotationSpeed: 50
+  playerSpeed: 5
+  playerRotationSpeed: 500
   PlayerHealth: 20

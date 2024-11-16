@@ -20,12 +20,12 @@ public class PlayerController : MonoBehaviour, IPlayerDied
     {
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
-        _camera = Camera.main.transform;
     }
     // Start is called before the first frame update
     void Start()
     {
         _startPos = transform.position;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour, IPlayerDied
 
         if (!_controllerActive) return;
         MovementHandler();
-        RotationHandler();
     }
 
     private void MovementHandler()
@@ -46,26 +45,17 @@ public class PlayerController : MonoBehaviour, IPlayerDied
         _xMovement = Input.GetAxis("Horizontal");
         _yMovement = Input.GetAxis("Vertical");
 
-        Vector3 direction = _camera.forward * _yMovement + _camera.right * _xMovement;
+        Vector3 direction = new Vector3(_xMovement, 0f, _yMovement);
         direction.Normalize();
-        direction.y = 0;
-        direction.y = _rb.velocity.y;
 
-        direction *= playerSO.playerSpeed;
+        transform.Translate(direction * playerSO.playerSpeed * Time.deltaTime, Space.World);
         _rb.velocity = direction;
-    }
 
-    private void RotationHandler()
-    {
-        Vector3 targetDir = _camera.forward * _yMovement + _camera.right * _xMovement;
-        targetDir.Normalize();
-        targetDir.y = 0;
-
-        if(targetDir == Vector3.zero) targetDir = transform.forward;
-
-        Quaternion targetRotation = Quaternion.LookRotation(targetDir);
-        Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, playerSO.playerRotationSpeed);
-        transform.rotation = playerRotation;
+        if(direction != Vector3.zero)
+        {
+            Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, playerSO.playerRotationSpeed);
+        }
     }
 
     private IEnumerator DisableControl()
