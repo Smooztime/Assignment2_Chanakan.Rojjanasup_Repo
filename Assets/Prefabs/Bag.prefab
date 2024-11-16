@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3771539291818536933}
   - component: {fileID: 8729000401299082337}
+  - component: {fileID: 6627293010439885643}
   m_Layer: 0
   m_Name: Bag
   m_TagString: Untagged
@@ -54,6 +55,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.27, y: 1, z: 0.58}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6627293010439885643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4614816045788192237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f939dd2801b5d104eba588c48c75bc1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectiblesSo: {fileID: 11400000, guid: 3f2ec8f7b08c0754ea2b5e81aba8e8c8, type: 2}
 --- !u!1001 &7853978547050161125
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 10
   playerRotationSpeed: 50
-  PlayerHealth: 10
+  PlayerHealth: 20
