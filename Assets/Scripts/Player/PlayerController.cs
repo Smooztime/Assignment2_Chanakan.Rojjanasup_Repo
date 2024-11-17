@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, IPlayerDied
+public class PlayerController : MonoBehaviour
 {
+    //This script used Single Responsibility about Player Controller Only
     [SerializeField] private PlayerStatsSo playerSO;
 
     public PlayerStatsSo PlayerStatsSo => playerSO;
@@ -16,19 +17,21 @@ public class PlayerController : MonoBehaviour, IPlayerDied
     private Vector3 _startPos;
     private bool _controllerActive = true;
 
+    public Rigidbody RB=> _rb;
+    public Vector3 StartPos => _startPos;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         _startPos = transform.position;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     void Update()
     {
         var velocity = _rb.velocity;
@@ -46,10 +49,12 @@ public class PlayerController : MonoBehaviour, IPlayerDied
         _yMovement = Input.GetAxis("Vertical");
 
         Vector3 direction = new Vector3(_xMovement, 0f, _yMovement);
+        direction.y = 0f;
         direction.Normalize();
 
-        transform.Translate(direction * playerSO.playerSpeed * Time.deltaTime, Space.World);
+        
         _rb.velocity = direction;
+        _rb.velocity *= playerSO.playerSpeed;
 
         if(direction != Vector3.zero)
         {
@@ -58,17 +63,9 @@ public class PlayerController : MonoBehaviour, IPlayerDied
         }
     }
 
-    private IEnumerator DisableControl()
+    //Create a method that other script can used this with closed to fix when need to deactivate controller
+    public void ControllerActive(bool value)
     {
-        _rb.velocity = Vector3.zero;
-        _controllerActive = false;
-        yield return new WaitForSeconds(3);
-        transform.position = _startPos;
-        _controllerActive = true;
-    }
-
-    public void OnPlayerDied()
-    {
-        StartCoroutine(DisableControl());
+    _controllerActive = value;
     }
 }

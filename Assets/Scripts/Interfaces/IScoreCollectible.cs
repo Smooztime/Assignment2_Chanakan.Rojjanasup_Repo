@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IScoreCollectible
 {
+    //Interface Segregation
     public void OnCollect(PlayerScores playerScore);
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Door : ISwitchable
 {
+    //This script is Single Responsibility for door open and close
+    //Used Open/Closed and Liskov that inherit from ISwithable
     [SerializeField] private GameObject door;
     [SerializeField] private float doorSpeed;
     [SerializeField] private Transform openPosition;

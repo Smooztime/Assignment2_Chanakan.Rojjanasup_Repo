@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
+    //Single Responsibility to interact with all interfaces
     private PlayerHealth _playerHealth;
     private PlayerScores _playerScores;
     private IInteractable _interactable;

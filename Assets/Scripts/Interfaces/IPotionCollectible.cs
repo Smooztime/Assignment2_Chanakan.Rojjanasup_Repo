@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IPotionCollectible
 {
+    //Interface Segregation
     public void OnCollect(PlayerHealth playerHealth);
 }
