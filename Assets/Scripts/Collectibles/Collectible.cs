@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour, IScoreCollectible
 {
+    //Used IScoreCollectible to collect scores
     [SerializeField] private CollectiblesSO collectiblesSo;
 
     public void OnCollect(PlayerScores playerScore)

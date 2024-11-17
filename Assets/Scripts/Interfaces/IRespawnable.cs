@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IInteractable
+public interface IRespawnable
 {
     //Interface Segregation
-    public void OnInteract();
+    public void Respawn();
 }

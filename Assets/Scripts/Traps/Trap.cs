@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Trap : MonoBehaviour, IDamageable
 {
+    //This script used Single Responsibility about Respawn Only
+    //And this script used IDamageable to make PlayerHealth check if get damage from this
     [SerializeField] private TrapsSO trapsSO;
 
     private MeshRenderer[] _mesh;
@@ -15,6 +17,7 @@ public class Trap : MonoBehaviour, IDamageable
         _collider = GetComponent<Collider>();
     }
 
+    //Used IDamageable interface for add damage to player
     public void OnGetDamage(PlayerHealth playerHealth)
     {
         OnTrap(playerHealth);

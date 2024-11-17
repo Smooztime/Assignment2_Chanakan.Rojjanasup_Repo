@@ -5,14 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
+    //Single Responsibility about health
+    //Open/Closed
+    //Liskov
     private float currentHealth;
     private float maxHealth;
-    private IPlayerDied diedHandler;
+    private IRespawnable respawnable;
+
+    public float health => currentHealth;
 
     private void Awake()
     {
         maxHealth = GetComponent<PlayerController>().PlayerStatsSo.PlayerHealth;
-        diedHandler = GetComponent<IPlayerDied>();
+        respawnable = GetComponent<IRespawnable>();
     }
 
     private void Start()
@@ -21,6 +26,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player Health = " + currentHealth);
     }
 
+    //Create a method that other script can used this with closed to fix when get on trap
     public void GetDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
@@ -28,20 +34,19 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             Debug.Log("You Died!");
-            diedHandler?.OnPlayerDied();
-            currentHealth = maxHealth;
-            Debug.Log("Player Health = " + currentHealth);
+            respawnable?.Respawn();
         }
     }
 
+    //Create a method that other script can used this with closed to fix when collect potion
     public void Heal(float healAmount)
     {
         currentHealth += healAmount;
+        Debug.Log("Player Health = " + currentHealth);
         if (currentHealth >= maxHealth)
         {
             currentHealth = maxHealth;
             Debug.Log("Health Full");
-
             Debug.Log("Player Health = " + currentHealth);
         }
     }
